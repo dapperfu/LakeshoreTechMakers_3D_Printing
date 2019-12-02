@@ -1,0 +1,12 @@
+[submodule "OctoPrint"]
+	path = OctoPrint
+	url = https://github.com/foosel/OctoPrint.git
+[submodule "klipper"]
+	path = klipper
+	url = https://github.com/KevinOConnor/klipper.git
+[submodule "slic3r_profiles"]
+	path = slic3r_profiles
+	url = https://github.com/jed-frey/slic3r_profiles.git
+[submodule "Marlin"]
+	path = Marlin
+	url = https://github.com/jed-frey/Marlin.git
