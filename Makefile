@@ -4,15 +4,22 @@ check:
 	
 # Build Marlin 1.1.9 and 2.0.0 firmwares.
 .PHONY: firmwares
-firmwares: marlin119 marlin200
+firmwares: marlin119 marlin200 klipper
 	
 # Aliases
+.PHONY: klipper_bin
+klipper_bin: klipper/out/klipper.elf.hex
+
 .PHONY: marlin119
 marlin119: Marlin-1.1.9/.pioenvs/sanguino_atmega1284p/firmware.hex venv
 .PHONY: marlin200
 marlin200: Marlin-2.0.0/.pioenvs/sanguino_atmega1284p/firmware.hex venv
 	
 # Build 
+klipper/out/klipper.elf.hex: klipper/Makefile
+	cp klipper-config klipper/.config
+	cd klipper/ && make -j8
+
 Marlin-1.1.9/.pioenvs/sanguino_atmega1284p/firmware.hex: Marlin-1.1.9
 	venv/bin/platformio run --project-dir ${^} --environment sanguino_atmega1284p
 Marlin-2.0.0/.pioenvs/sanguino_atmega1284p/firmware.hex: Marlin-2.0.0
@@ -45,6 +52,9 @@ venv: OctoPrint/setup.py
 # Get submodules.
 OctoPrint/setup.py:
 	git submodule update --init
+klipper/Makefile:
+	git submodule update --init
+	
 
 # minphony from check.
 .PHONY: all test clean
@@ -52,3 +62,4 @@ all:
 test:
 clean:
 	git clean -xfd
+	cd klipper && git clean -xfd
