@@ -2,6 +2,12 @@
 check:
 	checkmake Makefile
 	
+.PHONY: upload119
+upload119: Marlin-1.1.9
+	venv/bin/platformio run --project-dir ${^} --environment sanguino_atmega1284p --target upload
+.PHONY: upload200
+upload200: Marlin-2.0.0
+	venv/bin/platformio run --project-dir ${^} --environment sanguino_atmega1284p --target upload
 # Build Marlin 1.1.9 and 2.0.0 firmwares.
 .PHONY: firmwares
 firmwares: marlin119 marlin200
