@@ -7,6 +7,6 @@
 [submodule "slic3r_profiles"]
 	path = slic3r_profiles
 	url = https://github.com/jed-frey/slic3r_profiles.git
-[submodule "Marlin"]
-	path = Marlin
-	url = https://github.com/jed-frey/Marlin.git
+[submodule "3D_Prints"]
+	path = 3D_Prints
+	url = https://github.com/jed-frey/3D_Prints.git
